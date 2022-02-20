@@ -1,0 +1,27 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Prepare
+{% endblock %}
+
+{% block main %}
+    <form action="/prepare" method="post">
+        <div class="mb-3">
+            <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="dish_name" name="dish_name" placeholder="Dish name" type="text">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="protain" name="protain" placeholder="Protain" type="number" step="0.01">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="fat" name="fat" placeholder="Fat" type="number" step="0.01">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="carbohydrate" name="carbohydrate" placeholder="Carbohydrate" type="number" step="0.01">
+        </div>
+        <div class="mb-3">
+            <input class="form-control mx-auto w-auto" id="calorie" name="calorie" placeholder="Calorie" type="number">
+        </div>
+        <button class="btn btn-primary" type="submit">Add</button>
+        <p>*これは新しい料理を登録するための専用フォームです。改めて学習を行わなければ意味を成しません。</p>
+    </form>
+{% endblock %}
