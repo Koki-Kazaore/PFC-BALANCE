@@ -5,8 +5,8 @@ from pprint import pprint
 import os, time, sys
 
 # APIキーとシークレットの指定
-key = "271c7e85506f6814bf628e954957c47b"
-secret = "34ac799e5a551e90"
+key = "{{ APIキーを入力 }}"
+secret = "{{ シークレットの入力 }}"
 # 待機秒数
 wait_time = 1
 
