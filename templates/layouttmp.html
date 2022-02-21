@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="機械学習を用いたPFCの評価">
+
+        <!--start CSS -->
+        <!-- http://getbootstrap.com/docs/5.1/ -->
+        <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link rel="icon" type="image/png" href="images/favicon2.png">
+        <script crossorigin="anonymous" src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"></script>
+        <!--end CSS -->
+
+        <title>PFC balance: {% block title %}{% endblock %}</title>
+
+    </head>
+
+    <body>
+
+        <div id="home" class="big-bg">
+            <header class="page-header wrapper">
+              <h1><a href="index.html"><img class="logo" src="images/PFC balance1.png" alt="PFCバランスシート ホーム"></a></h1>
+              <nav>
+                {% if session["user_id"] %}
+                <ul class="main-nav">
+                  <li class="nav-item"><a class="nav-link" href="/history">History</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                </ul>
+                {% else %}
+                <ul class="main-nav">
+                  <li class="nav-item"><a class="nav-link" href="/register">register</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/login">Log In</a></li>
+                </ul>
+                {% endif %}
+              </nav>
+
+            </header>
+
+        </div>
+
+        <main class="container-fluid py-5 text-center">
+            {% block main %}{% endblock %}
+        </main>
+
+    </body>
+
+</html>

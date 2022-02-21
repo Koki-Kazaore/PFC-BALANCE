@@ -5,6 +5,23 @@
 {% endblock %}
 
 {% block main %}
-    <p>{{ name }}.</p>
-    <img src="../{{ path }}" alt="{{ path }}">
+    <!--ul class="main-nav" >
+        <li><p>これは{{ per }}%の確率で{{ name }}です。</p></li>
+        <li><img src="../{{ path }}" alt="uploaded picture"></li>
+    </ul>
+    
+    <p class="uploaded-picture">これは{{ per }}%の確率で{{ name }}です。)
+    <img class="uploaded-picture" src="../{{ path }}" alt="uploaded picture" align="right">
+    </p-->
+
+    <div class="flex">
+        <figure class="image"><img src="../{{ path }}" alt="uploaded picture"></figure>
+        <div class="right">
+          <p class="title">これは{{ per }}%の確率で{{ name }}です。</p>
+          <p class="text">Protain: {{ protain }}g</p>
+          <p class="text">Fat: {{ fat }}g</p>
+          <p class="text">Carbohydrate: {{ carbohydrate }}g</p>
+          <p class="text">Calorie: {{ calorie }}g</p>
+        </div>
+      </div>
 {% endblock %}

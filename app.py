@@ -35,11 +35,10 @@ def after_request(response):
 
 # 3つ目
 @app.route("/")
-@login_required
+# @login_required
 def index():
     """Show portfolio of stocks"""
-    return apology("creating...", 403)
-    # 現在ログイン中のユーザーのidをtmpに保存しておく
+    return render_template("index.html")
 
 # 4つ目
 @app.route("/post", methods=["GET", "POST"])
@@ -61,12 +60,19 @@ def post():
         CALORIES = [588, 118, 648]
 
         idx, per = check_photo(path)
+        idx += 1
         idx = str(idx)
         row = db.execute("SELECT * FROM nutritions WHERE id = ?", idx)
         name = row[0]["dish"]
         # return apology(dish_name)
         # これは画像が正しくインプットされているかどうかのテストコードです
-        return render_template("check.html", path=path, name=name)
+
+        protain = row[0]["protain"]
+        fat = row[0]["fat"]
+        carbohydrate = row[0]["carbohydrate"]
+        calorie = row[0]["calorie"]
+
+        return render_template("check.html", path=path, name=name, per=per, protain=protain, fat=fat,  carbohydrate=carbohydrate, calorie=calorie)
 
     else:
         return render_template("post.html")
@@ -109,6 +115,17 @@ def login():
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    """Log user out"""
+
+    # Forget any user_id
+    session.clear()
+
+    # Redirect user to login form
+    return redirect("/")
 
 # 1つ目
 @app.route("/register", methods=["GET", "POST"])
