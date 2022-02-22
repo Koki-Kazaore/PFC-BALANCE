@@ -12,6 +12,7 @@ wait_time = 1
 
 # キーワードとディレクトリ名を指定してダウンロード
 def main():
+    """
     go_download("マグロ寿司", "sushi")
     go_download("サラダ", "salad")
     go_download("麻婆豆腐", "mabotofu")
@@ -42,6 +43,7 @@ def main():
     go_download("アヒージョ", "ahijillo")
     go_download("目玉焼き", "medamayaki")
     go_download("ブロッコリー", "broccoli")
+    """
 
 # Flickr APIで写真を検索
 def go_download(keyword, dir):

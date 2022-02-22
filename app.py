@@ -236,7 +236,7 @@ def prepare():
         db.execute("INSERT INTO nutritions (dish, protain, fat, carbohydrate, calorie) VALUES(?, ?, ?, ?, ?)",
                     dish_name, protain, fat, carbohydrate, calorie)
 
-        return redirect("/login")
+        return redirect("/prepare")
 
     else:
         return render_template("prepare.html")
