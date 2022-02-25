@@ -70,7 +70,7 @@ def post():
         protain = row[0]["protain"]
         fat = row[0]["fat"]
         carbohydrate = row[0]["carbohydrate"]
-        calorie = row[0]["calorie"]
+        calorie = int(row[0]["calorie"])
 
         return render_template("check.html", path=path, name=name, per=per, protain=protain, fat=fat,  carbohydrate=carbohydrate, calorie=calorie)
 

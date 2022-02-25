@@ -5,23 +5,31 @@
 {% endblock %}
 
 {% block main %}
-    <!--ul class="main-nav" >
-        <li><p>これは{{ per }}%の確率で{{ name }}です。</p></li>
-        <li><img src="../{{ path }}" alt="uploaded picture"></li>
-    </ul>
-    
-    <p class="uploaded-picture">これは{{ per }}%の確率で{{ name }}です。)
-    <img class="uploaded-picture" src="../{{ path }}" alt="uploaded picture" align="right">
-    </p-->
+    <div class="container">
+      <div class="image"><img src="../{{ path }}" alt="uploaded picture" width="600" height="400"></div>
+      <div id="box1" class="right">
+        <p class="title">これは{{ name }}です。</p>
+        <p style="text-align: right;">精度{{ per }}%</p>
+        <p class="text"><span class="count-up count-size">{{ calorie }}</span>kcal</p>
+        <div class="container">
+          <div class="text">P</div>
+          <div class="text">|</div>
+          <div class="text">F</div>
+          <div class="text">|</div>
+          <div class="text">C</div>
+        </div>
 
-    <div class="flex">
-        <figure class="image"><img src="../{{ path }}" alt="uploaded picture"></figure>
-        <div class="right">
-          <p class="title">これは{{ per }}%の確率で{{ name }}です。</p>
-          <p class="text">Protain: {{ protain }}g</p>
-          <p class="text">Fat: {{ fat }}g</p>
-          <p class="text">Carbohydrate: {{ carbohydrate }}g</p>
-          <p class="text">Calorie: {{ calorie }}g</p>
+        <div class="container">
+          <div class="text"><span class="count-up count-size">{{ protain }}</span>　</div>
+          <div class="text">　<span class="count-up count-size">{{ fat }}</span>　</div>
+          <div class="text">　<span class="count-up count-size">{{ carbohydrate }}</span></div>
+        </div>
+
+        <div class="container">
+          <div class="unit">g</div>
+          <div class="unit">　g</div>
+          <div class="unit">g</div>
         </div>
       </div>
+    </div>
 {% endblock %}

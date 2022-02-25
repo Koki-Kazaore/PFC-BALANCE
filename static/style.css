@@ -128,27 +128,40 @@ img {
 .flex {
   display: flex; /*横並び*/
 }
-.flex .image {
-  width: 600px; /*画像サイズ指定*/
+.container .image {
+  width: 500px; /*画像サイズ指定*/
   border-radius: 50%;
   margin: 0;
   padding: 0;
   overflow: hidden;
   position: relative;
 }
-.flex .right {
+.container .right {
   margin: 0 0 0 20px;
   padding: 0;
 }
-.flex .title {
+.container .title {
   margin: 0;
   padding: 0;
   font-weight: bold;
   font-size: 36px;
 }
-.flex .text {
+.container .text {
   margin: 34px 0 0;
-  text-align: left;
+  text-align: center;
   padding: 0;
   font-size: 30px;
+  font-family: 'Philosopher', serif;
+}
+
+.container .unit {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-family: 'Philosopher', serif;
+}
+
+.container {
+  display: flex;
+  justify-content: space-around;
 }
