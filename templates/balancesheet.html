@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    balancesheet
+{% endblock %}
+
+{% block main %}
+  <div class="wrapper">
+    <canvas id="myRadarChart"></canvas>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+  <script>
+    let protain = {{ protain | tojson }};
+    let fat = {{ fat | tojson }};
+    let carbo = {{ carbo | tojson }};
+    var ctx = document.getElementById("myRadarChart");
+    Chart.defaults.global.defaultFontColor = 'white';
+    Chart.defaults.labels
+    var myRadarChart = new Chart(ctx, {
+      //グラフの種類
+      type: 'radar',
+      //データの設定
+      data: {
+          //データ項目のラベル
+          labels: ["P", "F", "C"],
+          //データセット
+          datasets: [
+              {
+                 //凡例のラベル
+                  label: "Your Balance",
+                  //背景色
+                  backgroundColor: "rgba(200,112,126,0.3)",
+                  //枠線の色
+                  borderColor: "rgba(200,112,126,1)",
+                  //結合点の背景色
+                  pointBackgroundColor: "rgba(200,112,126,1)",
+                  //結合点の枠線の色
+                  pointBorderColor: "#fff",
+                  //結合点の背景色（ホバーしたとき）
+                  pointHoverBackgroundColor: "#fff",
+                  //結合点の枠線の色（ホバーしたとき）
+                  pointHoverBorderColor: "rgba(200,112,126,1)",
+                  //結合点より外でマウスホバーを認識する範囲（ピクセル単位）
+                  hitRadius: 10,
+                  //グラフのデータ
+                  data: [protain,fat,carbo]
+              },
+              {
+                 //凡例のラベル
+                  label: "Appropriate Value",
+                  //背景色
+                  backgroundColor: "rgba(80,126,164,0.3)",
+                  //枠線の色
+                  borderColor: "rgba(80,126,164,1)",
+                  //結合点の背景色
+                  pointBackgroundColor: "rgba(80,126,164,1)",
+                  //結合点の枠線の色
+                  pointBorderColor: "#fff",
+                  //結合点の背景色（ホバーしたとき）
+                  pointHoverBackgroundColor: "#fff",
+                  //結合点の枠線の色（ホバーしたとき）
+                  pointHoverBorderColor: "rgba(80,126,164,1)",
+                  //結合点より外でマウスホバーを認識する範囲（ピクセル単位）
+                  hitRadius: 5,
+                  //グラフのデータ
+                  data: [40,10,50]
+              }
+          ]
+      },
+     options: {
+        // レスポンシブ指定
+        responsive: true,
+        scale: {
+          ticks: {
+            // 最小値の値を0指定
+            beginAtZero:true,
+            min: 0,
+            // 最大値を指定
+            max: 80,
+          }
+        }
+      }
+      
+    });
+    </script>
+{% endblock %}
