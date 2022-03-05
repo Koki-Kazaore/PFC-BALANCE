@@ -1,4 +1,5 @@
 import os
+from urllib import response
 
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session
@@ -8,6 +9,9 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from helpers import apology, login_required
 from my_photo import check_photo_str, check_photo
+
+import datetime
+
 
 
 # Configure application
@@ -40,11 +44,41 @@ def index():
     """Show portfolio of stocks"""
     return render_template("index.html")
 
+@app.route("/balancesheet")
+@login_required
+def balancesheet():
+    # time = db.execute("SELECT DATE('now')")
+    today = datetime.date.today()
+    tmp = session["user_id"]
+    rows = db.execute("SELECT * FROM log WHERE user_id = ? AND created_date = ?", tmp, today)
+
+    sum_protain = 0
+    sum_fat = 0
+    sum_carbo = 0
+    # ユーザーと日付で絞り込みを書けた数   
+    count = len(rows)
+    for i in range(count):
+        test = rows[i]["dish_id"]
+        sum_protain += db.execute("SELECT protain FROM nutritions WHERE id = ?", test)[0]["protain"]
+        sum_fat += db.execute("SELECT fat FROM nutritions WHERE id = ?", test)[0]["fat"]
+        sum_carbo += db.execute("SELECT carbohydrate FROM nutritions WHERE id = ?", test)[0]["carbohydrate"]
+
+    # PFC割合計算
+    bumbo = sum_protain + sum_fat + sum_carbo
+    ratio_protain = round(sum_protain * 100 / bumbo)
+    ratio_fat = round(sum_fat * 100 / bumbo)
+    ratio_carbo = round(sum_carbo * 100 / bumbo)
+
+    #return apology(count)
+    return render_template("balancesheet.html", rows=rows, protain=ratio_protain, fat=ratio_fat, carbo=ratio_carbo)
+
 # 4つ目
 @app.route("/post", methods=["GET", "POST"])
 @login_required
 def post():
     """Post pictures of what I eat"""
+
+    tmp = session["user_id"]
 
     if request.method == "POST":
         # pictureに入力した画像を格納
@@ -55,9 +89,6 @@ def post():
 
 
         path = "static/test_image/" + path
-
-        LABELS = ["寿司", "サラダ", "麻婆豆腐"]
-        CALORIES = [588, 118, 648]
 
         idx, per = check_photo(path)
         idx += 1
@@ -72,12 +103,13 @@ def post():
         carbohydrate = row[0]["carbohydrate"]
         calorie = int(row[0]["calorie"])
 
+        db.execute("INSERT INTO log (user_id, dish_id) VALUES(?, ?)", tmp, idx)
+
         return render_template("check.html", path=path, name=name, per=per, protain=protain, fat=fat,  carbohydrate=carbohydrate, calorie=calorie)
 
     else:
         return render_template("post.html")
 
-    # return apology("TODO")
 
 # 2つ目
 @app.route("/login", methods=["GET", "POST"])
