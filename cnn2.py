@@ -11,7 +11,7 @@ im_rows = 32 # 画像の縦ピクセルサイズ
 im_cols = 32 # 画像の横ピクセルサイズ
 im_color = 3 # 画像の色空間
 in_shape = (im_rows, im_cols, im_color)
-nb_classes = 4
+nb_classes = 8
 
 # 写真データを読み込み
 photos = np.load('image/photos.npz')

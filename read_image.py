@@ -15,12 +15,12 @@ def main():
     glob_files("./image/salad", 1)
     # glob_files("./image/mabotofu", 2)
     glob_files("./image/soba", 3)
-    
-    """
     glob_files("./image/okonomiyaki", 4)
     glob_files("./image/stake", 5)
     glob_files("./image/carry_and_rice", 6)
     glob_files("./image/gyoza", 7)
+    
+    """
     glob_files("./image/pizza", 8)
     glob_files("./image/omuraisu", 9)
     glob_files("./image/hamburger_stake", 10)

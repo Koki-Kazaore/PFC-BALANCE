@@ -10,7 +10,7 @@ im_rows = 32 # 画像の縦ピクセルサイズ
 im_cols = 32 # 画像の横ピクセルサイズ
 im_color = 3 # 画像の色空間
 in_shape = (im_rows, im_cols, im_color)
-nb_classes = 4
+nb_classes = 8
 
 LABELS = ["寿司", "サラダ", "麻婆豆腐"]
 CALORIES = [588, 118, 648]
