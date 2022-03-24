@@ -47,6 +47,7 @@ def index():
 @app.route("/balancesheet")
 @login_required
 def balancesheet():
+
     # time = db.execute("SELECT DATE('now')")
     today = datetime.date.today()
     tmp = session["user_id"]
@@ -57,11 +58,15 @@ def balancesheet():
     sum_carbo = 0
     # ユーザーと日付で絞り込みを書けた数   
     count = len(rows)
+
     for i in range(count):
         test = rows[i]["dish_id"]
         sum_protain += db.execute("SELECT protain FROM nutritions WHERE id = ?", test)[0]["protain"]
         sum_fat += db.execute("SELECT fat FROM nutritions WHERE id = ?", test)[0]["fat"]
         sum_carbo += db.execute("SELECT carbohydrate FROM nutritions WHERE id = ?", test)[0]["carbohydrate"]
+
+    if sum_carbo == 0:
+        return apology("pictures have not posted yet...", 403)
 
     # PFC割合計算
     bumbo = sum_protain + sum_fat + sum_carbo
@@ -71,6 +76,7 @@ def balancesheet():
 
     #return apology(count)
     return render_template("balancesheet.html", rows=rows, protain=ratio_protain, fat=ratio_fat, carbo=ratio_carbo)
+
 
 # 4つ目
 @app.route("/post", methods=["GET", "POST"])
